@@ -36,11 +36,11 @@ public  class BaseSpinLock implements MyLock {
 
 注：该例子为非公平锁，获得锁的先后顺序，不会按照进入lock的先后顺序进行。
 
-#### 1.1. TicketLock
+### 1.1. TicketLock
 
 ---
 Ticket锁主要解决的是访问顺序的问题，主要的问题是在多核cpu上,每次都要查询一个serviceNum 服务号，影响性能（必须要到主内存读取，并阻止其他cpu修改）。
-#### 1.2. CLHLock、MCSLock
+### 1.2. CLHLock、MCSLock
 
 ---
 CLHLock 和MCSLock 则是两种类型相似的公平锁，采用链表的形式进行排序
