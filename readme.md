@@ -107,3 +107,4 @@ JAVA中，能够进入\退出、阻塞状态或包含阻塞锁的方法有 ，sy
 
 - 如果当前全局处于写锁状态，除非是重入获取写锁，否则入队尾
 
+> 参考资料https://blog.csdn.net/zqz_zqz/article/details/70233767
