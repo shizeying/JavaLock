@@ -1,5 +1,7 @@
 package com.yangxin.spinlock;
 
+import com.yangxin.MyLock;
+
 import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
 
 /**
@@ -30,8 +32,6 @@ public class MCSLock implements MyLock {
             preNode.next = currentNode;
             while (currentNode.isLocked) {
             }
-        }else {
-            currentNode.isLocked = false;
         }
     }
 
@@ -48,6 +48,9 @@ public class MCSLock implements MyLock {
                 // 这里之所以要忙等是因为：step 1执行完后，step 2可能还没执行完
                 while (currentNode.next == null){
                 }
+                // 释放锁
+                currentNode.next.isLocked = false;
+                currentNode.next = null;
             }
         }else {
             currentNode.next.isLocked = false;

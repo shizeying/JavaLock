@@ -1,4 +1,4 @@
-package com.yangxin.spinlock;
+package com.yangxin;
 
 /**
  * @author leon on 2018/8/14.

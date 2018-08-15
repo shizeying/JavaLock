@@ -1,10 +1,10 @@
 package com.yangxin.spinlock;
 
+import com.yangxin.MyLock;
+
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * @author leon on 2018/8/13.
@@ -24,7 +24,8 @@ public class SpinLockTest implements Runnable {
         //go("com.yangxin.spinlock.BaseSpinLock");
         //go("com.yangxin.spinlock.BaseTicketLock");
         //go("com.yangxin.spinlock.CLHLock");
-        go("com.yangxin.spinlock.MCSLock");
+        //go("com.yangxin.spinlock.MCSLock");
+        go("com.yangxin.blockedlock.Blockedlock");
     }
 
     public static void go(String name) throws Exception {
@@ -33,7 +34,7 @@ public class SpinLockTest implements Runnable {
         ExecutorService cachedPool = Executors.newCachedThreadPool();
         MyLock lock = (MyLock)Class.forName(name).getConstructor().newInstance();
         long start = System.nanoTime();
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 1000; i++) {
             SpinLockTest test = new SpinLockTest(lock);
             cachedPool.execute(test);
         }
@@ -50,6 +51,7 @@ public class SpinLockTest implements Runnable {
     public void run() {
         this.lock.lock();
         sum++;
+        System.out.println(sum);
         this.lock.unlock();
     }
 }

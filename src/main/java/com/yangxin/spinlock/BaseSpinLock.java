@@ -1,7 +1,8 @@
 package com.yangxin.spinlock;
 
+import com.yangxin.MyLock;
+
 import java.util.concurrent.atomic.AtomicReference;
-import java.util.concurrent.locks.Lock;
 
 
 /**
